@@ -34,4 +34,13 @@ if [ ! -z "$cwd" ]; then
   servercommandflags=servercommandflags+" -c $cmd"
 fi
 
+started=$(screen -ls | grep $screensession | wc -l)
+
+if [ $started -gt 0 ]; then
+  echo "Screen session $screensession already started"
+  exit 16
+fi
+
 screen -d -m -S $screensession sh -c $servercommand $servercommandflags
+
+echo "Started screen session $screensession"
