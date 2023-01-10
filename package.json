@@ -4,9 +4,11 @@
   "description": "discord bot to manage game servers",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "addCommands": "npx ts-node ./deploy-commands.ts",
+    "start": "npx ts-node ./index.ts" 
   },
-  "repository": {
+  "repository": { 
     "type": "git",
     "url": "git+https://github.com/GoodEffort/dionysus-bot.git"
   },
@@ -17,6 +19,9 @@
   },
   "homepage": "https://github.com/GoodEffort/dionysus-bot#readme",
   "dependencies": {
+    "@discordjs/builders": "^1.4.0",
+    "@discordjs/rest": "^1.5.0",
+    "discord-api-types": "^0.37.27",
     "discord.js": "^14.7.1"
   }
 }
