@@ -1,5 +1,5 @@
 import { exec } from './exec';
-import { Minecraft } from './config.json'
+import { Minecraft } from './config'
 import { CacheType, CommandInteraction } from 'discord.js';
 import { MinecraftCommands } from './slash-commands';
 
