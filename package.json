@@ -1,0 +1,22 @@
+{
+  "name": "dionysus-bot",
+  "version": "1.0.0",
+  "description": "discord bot to manage game servers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GoodEffort/dionysus-bot.git"
+  },
+  "author": "Luke Hovarter",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GoodEffort/dionysus-bot/issues"
+  },
+  "homepage": "https://github.com/GoodEffort/dionysus-bot#readme",
+  "dependencies": {
+    "discord.js": "^14.7.1"
+  }
+}

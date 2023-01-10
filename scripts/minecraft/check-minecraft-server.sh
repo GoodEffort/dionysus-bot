@@ -1,0 +1,1 @@
+netstat -ano | grep "25565" | grep "LISTEN" | wc -l
