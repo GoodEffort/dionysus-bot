@@ -1,6 +1,6 @@
 import { Client, GatewayIntentBits } from 'discord.js';
 import { commandIsEnum } from './commandIsEnum';
-import { token } from './discord-auth.json';
+import { token } from './discord-auth';
 import { MinecraftServer } from './minecraft-server';
 import { MinecraftCommands } from './slash-commands';
 

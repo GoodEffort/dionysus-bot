@@ -104,4 +104,4 @@ dist
 .tern-port
 
 # auth info
-discord-auth.json
+discord-auth.ts
