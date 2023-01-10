@@ -1,12 +1,14 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { REST } from '@discordjs/rest';
 import { Routes } from 'discord-api-types/v9';
-import { clientId, guildId, token } from './config';
+import { clientId, guildId, token } from './discord-auth.json';
+import { MinecraftCommands } from './slash-commands';
 
 const commands = [
-    new SlashCommandBuilder().setName('StartMinecraft').setDescription('Starts the Minecraft server'),
-    new SlashCommandBuilder().setName('GetPlayersMinecraft').setDescription('Gets the number of players on the Minecraft server'),
-    new SlashCommandBuilder().setName('CheckStatusMinecraft').setDescription('Checks if the Minecraft server is online'),
+    new SlashCommandBuilder().setName(MinecraftCommands.START).setDescription('Starts the Minecraft server'),
+    new SlashCommandBuilder().setName(MinecraftCommands.GETPLAYERS).setDescription('Gets the number of players on the Minecraft server'),
+    new SlashCommandBuilder().setName(MinecraftCommands.CHECKSTATUS).setDescription('Checks if the Minecraft server is online'),
+    new SlashCommandBuilder().setName(MinecraftCommands.INFO).setDescription('Gets information about the Minecraft server'),
 ].map(command => command.toJSON());
 
 const rest = new REST({ version: '9' }).setToken(token);
