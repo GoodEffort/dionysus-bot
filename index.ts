@@ -1,5 +1,5 @@
 import { Client, GatewayIntentBits } from 'discord.js';
-import { token, guildId, username, Minecraft } from './config';
+import { token, Minecraft } from './config';
 import { promisify } from 'util';
 import { exec as _exec } from 'child_process';
 
@@ -55,3 +55,5 @@ client.on('interactionCreate', async interaction => {
             }
     }
 });
+
+client.login(token);
