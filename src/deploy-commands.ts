@@ -2,7 +2,7 @@ import { SlashCommandBuilder } from '@discordjs/builders';
 import { REST } from '@discordjs/rest';
 import { Routes } from 'discord-api-types/v9';
 import { clientId, guildId, token } from './discord-auth';
-import { MinecraftCommands } from './slash-commands';
+import { MinecraftCommands } from './slash-commands'
 
 const commands = [
     new SlashCommandBuilder().setName(MinecraftCommands.START).setDescription('Starts the Minecraft server'),
