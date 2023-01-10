@@ -9,4 +9,7 @@ export enum Minecraft {
     GETPLAYERS = "/home/steam/minecraft/scripts/get-number-of-players.sh",
     CHECKSTATUS = "/home/steam/minecraft/scripts/check-minecraft-server.sh",
 }
+// for the future
 export enum Valheim {}
+export enum Satisfactory {}
+export enum Factorio {}
