@@ -1,15 +1,15 @@
-import { exec } from './exec';
 import { Minecraft } from './config'
 import { CacheType, CommandInteraction } from 'discord.js';
 import { MinecraftCommands } from './slash-commands';
+import { minecraftExec } from './exec';
 
-const { port, start, getPlayers, checkStatus } = Minecraft;
+const { port, start, getPlayers, checkStatus, stop } = Minecraft;
 
 export const MinecraftServer = {
     [MinecraftCommands.START]: async (interaction: CommandInteraction<CacheType>) => {
         await interaction.deferReply();
         try {
-            const response = await exec(start);
+            const response = await minecraftExec(start);
 
             if (!response.stderr) {
                 await interaction.editReply('Minecraft server started!');
@@ -26,7 +26,7 @@ export const MinecraftServer = {
     [MinecraftCommands.GETPLAYERS]: async (interaction: CommandInteraction<CacheType>) => {
         await interaction.deferReply();
         try {
-            const response = await exec(getPlayers);
+            const response = await minecraftExec(getPlayers);
 
             if (!response.stderr) {
                 await interaction.editReply(response.stdout);
@@ -41,7 +41,7 @@ export const MinecraftServer = {
     [MinecraftCommands.CHECKSTATUS]: async (interaction: CommandInteraction<CacheType>) => {
         await interaction.deferReply();
         try {
-            const response = await exec(checkStatus);
+            const response = await minecraftExec(checkStatus);
 
             if (!response.stderr) {
                 const out = response.stdout.replace(/\D/g, '');
@@ -70,6 +70,23 @@ export const MinecraftServer = {
             await interaction.editReply("Something went wrong!");
         }
 
+    },
+    [MinecraftCommands.STOP]: async (interaction: CommandInteraction<CacheType>) => {
+        await interaction.deferReply();
+        try {
+            const response = await minecraftExec(stop);
+
+            if (!response.stderr) {
+                await interaction.editReply('Minecraft server stopped!');
+            } else if (+response.stderr.replace(/\D/g, '') === 16) {
+                await interaction.editReply('Minecraft server is already stopped!');
+            } else {
+                await interaction.editReply('Minecraft server failed to stop!');
+            }
+        } catch (error) {
+            console.error(error);
+            await interaction.editReply("Something went wrong!");
+        }
     },
 }
 export default MinecraftServer;
