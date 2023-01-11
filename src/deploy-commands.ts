@@ -4,18 +4,18 @@ import { Routes } from 'discord-api-types/v9';
 import { clientId, guildId, token } from './discord-auth';
 import { MinecraftCommands } from './slash-commands'
 
-const commands = [
-    new SlashCommandBuilder().setName(MinecraftCommands.START).setDescription('Starts the Minecraft server'),
-    new SlashCommandBuilder().setName(MinecraftCommands.GETPLAYERS).setDescription('Gets the number of players on the Minecraft server'),
-    new SlashCommandBuilder().setName(MinecraftCommands.CHECKSTATUS).setDescription('Checks if the Minecraft server is online'),
-    new SlashCommandBuilder().setName(MinecraftCommands.INFO).setDescription('Gets information about the Minecraft server'),
-].map(command => command.toJSON());
+export async function deployCommands() {
+    console.log('Started refreshing application (/) commands.');
+    const commands = [
+        new SlashCommandBuilder().setName(MinecraftCommands.START).setDescription('Starts the Minecraft server'),
+        new SlashCommandBuilder().setName(MinecraftCommands.GETPLAYERS).setDescription('Gets the number of players on the Minecraft server'),
+        new SlashCommandBuilder().setName(MinecraftCommands.CHECKSTATUS).setDescription('Checks if the Minecraft server is online'),
+        new SlashCommandBuilder().setName(MinecraftCommands.INFO).setDescription('Gets information about the Minecraft server'),
+    ].map(command => command.toJSON());
 
-const rest = new REST({ version: '9' }).setToken(token);
+    const rest = new REST({ version: '9' }).setToken(token);
 
-(async () => {
     try {
-        console.log('Started refreshing application (/) commands.');
 
         await rest.put(
             Routes.applicationGuildCommands(clientId, guildId), { body: commands },
@@ -25,4 +25,6 @@ const rest = new REST({ version: '9' }).setToken(token);
     } catch (error) {
         console.error(error);
     }
-})();
+};
+
+export default deployCommands;
