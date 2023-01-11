@@ -6,14 +6,14 @@ import { StandardEnum } from './types/StandardEnum';
 import { MinecraftCommands, MinecraftCommandsDescriptions } from './slash-commands'
 
 function buildCommands<
-    Commands extends StandardEnum,
-    Descriptions extends StandardEnum
+    Commands extends StandardEnum
 >(
     commandsEnum: Commands,
-    descriptionsEnum: Descriptions,
+    descriptionsEnum: { [key in Commands[keyof Commands]]: string },
 ) {
     const commands: SlashCommandBuilder[] = [];
-    for (const command in commandsEnum) {
+    for (const commandKey in commandsEnum) {
+        const command = commandsEnum[commandKey];
         const description = descriptionsEnum[command];
         if (description === undefined) throw new Error(`No description for command ${command}!`);
         const commandBuilder = new SlashCommandBuilder()
