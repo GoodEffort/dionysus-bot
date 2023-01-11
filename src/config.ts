@@ -1,6 +1,6 @@
 export enum BotConfig {
     // bot install directory
-    installDirectory = "~/dionysus-bot/",
+    installDirectory = "/home/steam/dionysus-bot/",
 
     // bot script directory (in bot install directory)
     scriptDirectory = "scripts/",
@@ -12,7 +12,7 @@ export enum Minecraft {
     screenSession = "minecraft",
 
     // minecraft server directory
-    installDirectory = "~/minecraft/",
+    installDirectory = "/home/steam/minecraft/",
 
     // script directory (in bot script directory)
     scriptDirectory = "minecraft/",
