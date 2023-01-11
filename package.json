@@ -6,7 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "addCommands": "npx ts-node ./deploy-commands.ts",
-    "start": "npx ts-node ./index.ts"
+    "startDev": "npx ts-node ./index.ts",
+    "build": "tsc",
+    "addCommandsProd": "node ./dist/deploy-commands.js",
+    "runProd": "node ./dist/index.js"
   },
   "repository": {
     "type": "git",
