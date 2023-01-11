@@ -105,4 +105,3 @@ dist
 
 # auth info
 discord-auth.ts
-/src/*.js
