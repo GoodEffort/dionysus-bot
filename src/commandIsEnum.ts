@@ -1,6 +1,5 @@
-type StandardEnum = {
-    [id: string]: string;
-};
+import { StandardEnum } from "./types/StandardEnum";
+
 export function commandIsEnum<
     T extends StandardEnum,
     K extends keyof T>(enumerator: T, commandName: string): commandName is T[K] {

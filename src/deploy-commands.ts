@@ -2,16 +2,37 @@ import { SlashCommandBuilder } from '@discordjs/builders';
 import { REST } from '@discordjs/rest';
 import { Routes } from 'discord-api-types/v9';
 import { clientId, guildId, token } from './discord-auth';
-import { MinecraftCommands } from './slash-commands'
+import { StandardEnum } from './types/StandardEnum';
+import { MinecraftCommands, MinecraftCommandsDescriptions } from './slash-commands'
+
+function buildCommands<
+    Commands extends StandardEnum,
+    Descriptions extends StandardEnum
+>(
+    commandsEnum: Commands,
+    descriptionsEnum: Descriptions,
+) {
+    const commands: SlashCommandBuilder[] = [];
+    for (const command in commandsEnum) {
+        const description = descriptionsEnum[command];
+        if (description === undefined) throw new Error(`No description for command ${command}!`);
+        const commandBuilder = new SlashCommandBuilder()
+            .setName(command)
+            .setDescription(description)
+
+        commands.push(commandBuilder);
+    }
+    return commands;
+}
 
 export async function deployCommands() {
     console.log('Started refreshing application (/) commands.');
-    const commands = [
-        new SlashCommandBuilder().setName(MinecraftCommands.START).setDescription('Starts the Minecraft server'),
-        new SlashCommandBuilder().setName(MinecraftCommands.GETPLAYERS).setDescription('Gets the number of players on the Minecraft server'),
-        new SlashCommandBuilder().setName(MinecraftCommands.CHECKSTATUS).setDescription('Checks if the Minecraft server is online'),
-        new SlashCommandBuilder().setName(MinecraftCommands.INFO).setDescription('Gets information about the Minecraft server'),
-    ].map(command => command.toJSON());
+    const commands = 
+        ([] as SlashCommandBuilder[])
+        .concat(
+            buildCommands(MinecraftCommands, MinecraftCommandsDescriptions),
+            // add more builders here
+        ).map(command => command.toJSON());
 
     const rest = new REST({ version: '9' }).setToken(token);
 

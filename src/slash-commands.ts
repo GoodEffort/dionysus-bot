@@ -6,3 +6,10 @@ export enum MinecraftCommands {
     INFO = "minecraft-info",
 }
 export default MinecraftCommands;
+
+export const MinecraftCommandsDescriptions = {
+    [MinecraftCommands.START]: "Starts the Minecraft server",
+    [MinecraftCommands.GETPLAYERS]: "Gets the number of players on the Minecraft server",
+    [MinecraftCommands.CHECKSTATUS]: "Checks if the Minecraft server is online",
+    [MinecraftCommands.INFO]: "Gets information about the Minecraft server",
+}
