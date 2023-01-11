@@ -12,12 +12,13 @@ print_usage() {
 while getopts 's:' flag; do
   case "${flag}" in
     s) screensession="${OPTARG}" ;;
+    c) minecraftCommand="${OPTARG}" ;;
     *) print_usage
        exit 1 ;;
   esac
 done
 
-if [ -z "$minecraftCommand" ] || [ -z $minecraftCommand ]; then
+if [ -z "$minecraftCommand" ] || [ -z "$screensession" ]; then
   print_usage
   exit 2
 fi
