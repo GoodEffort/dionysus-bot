@@ -5,10 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "addCommands": "npx ts-node ./deploy-commands.ts",
     "startDev": "npx ts-node ./index.ts",
     "build": "tsc",
-    "addCommandsProd": "node ./dist/deploy-commands.js",
     "runProd": "node ./dist/index.js"
   },
   "repository": {
