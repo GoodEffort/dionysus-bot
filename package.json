@@ -4,7 +4,7 @@
   "description": "discord bot to manage game servers",
   "main": "index.js",
   "scripts": {
-    "dev": "npx ts-node .src/index.ts",
+    "dev": "npx ts-node ./src/index.ts",
     "build": "tsc",
     "prod": "node ./dist/index.js",
     "pm2": "pm2 start ./dist/index.js --name dionysus-bot -- start"
