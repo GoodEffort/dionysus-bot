@@ -3,7 +3,7 @@ port=25565
 screensession=minecraft
 min=60
 now=$(date +%s)
-send="/home/steam/minecraft/scripts/send-command.sh"
+send="./send-command.sh"
 
 while getopts 's:p:' flag; do
   case "${flag}" in
@@ -18,13 +18,13 @@ done
 numberOfPlayers=$(./get-number-of-players.sh -p $port)
 
 if (($numberOfPlayers > 0)); then
-  "$numberOfPlayers:$now:" >> /home/steam/minecraft/scripts/activity/$screensession
+  "$numberOfPlayers:$now:" >> ./activity/$screensession
   echo "$numberOfPlayers players online"
 fi
 
 startup="s"
 startupweight="1"
-readarray activity < /home/steam/minecraft/scripts/activity/$screensession
+readarray activity < ./activity/$screensession
 playersinmin=0
 
 for row in ${activity[@]}; do
@@ -32,7 +32,7 @@ for row in ${activity[@]}; do
   ago=$(($now - ${rowarray[1]}))
   ago=$(($ago / 60))
   if ((ago > min)); then
-    sed -i "/$(echo ${rowarray[1]})/d" /home/steam/minecraft/scripts/activity/$screensession
+    sed -i "/$(echo ${rowarray[1]})/d" ./activity/$screensession
   else
     p="${rowarray[0]}"
     activeplayers="${p/s/"$startupweight"}"
@@ -44,5 +44,5 @@ echo "$playersinmin players in last hour (non unique)"
 
 if ((playersinmin == 0)); then
   $send stop -s $screensession
-  /home/steam/minecraft/scripts/edit-cron-job.sh -r
+  ./edit-cron-job.sh -r
 fi

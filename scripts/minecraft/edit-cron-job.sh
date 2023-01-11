@@ -1,5 +1,5 @@
 #!/bin/bash
-task="/home/steam/minecraft/scripts/check-activity.sh"
+task="./check-activity.sh"
 screensession="minecraft"
 cronschedule="*/5 * * * *"
 removeOnly=false

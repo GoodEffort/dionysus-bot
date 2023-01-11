@@ -1,6 +1,6 @@
 #!/bin/bash
 screensession="minecraft"
-servercommand="/home/steam/minecraft/scripts/start-server.sh"
+servercommand="./start-server.sh"
 timeout=false
 mem=""
 jar=""

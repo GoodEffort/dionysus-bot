@@ -2,7 +2,7 @@
 mem="5G"
 jar="./mc-server-1.19.2.jar"
 screensession="minecraft"
-cwd="/home/steam/minecraft/"
+cwd="~/minecraft/"
 timeout=false
 
 while getopts 'm:s:j:c:' flag; do
@@ -35,6 +35,10 @@ servercommand="java -Xmx$mem -Xms$mem \
 echo "Starting Minecraft server with $mem of memory using the $jar as the server jar"
 echo "s:$(date +%s):" >> ./scripts/activity/$screensession
 
+if [ $timeout = true ] ; then
+  ./edit-cron-job.sh
+fi
+
 echo $servercommand
 until $servercommand; do
         echo "Minecraft server crashed with exit code $?. Restarting in 10 seconds" >&2
@@ -44,5 +48,5 @@ done
 echo "Server closed successfully!"
 
 if [ $timeout = true ] ; then
-  ./edit-cron-job.sh
+  ./edit-cron-job.sh -r
 fi

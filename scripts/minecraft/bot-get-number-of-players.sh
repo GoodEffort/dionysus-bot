@@ -9,5 +9,5 @@ while getopts 'p:' flag; do
   esac
 done
 
-players="$(/home/steam/minecraft/scripts/get-number-of-players.sh -p $port)"
+players="$(./get-number-of-players.sh -p $port)"
 echo "There are $players players online."
