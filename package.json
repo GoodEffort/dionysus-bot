@@ -4,7 +4,6 @@
   "description": "discord bot to manage game servers",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npx ts-node ./index.ts",
     "build": "tsc",
     "prod": "node ./dist/index.js",
