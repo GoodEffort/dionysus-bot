@@ -9,7 +9,7 @@ print_usage() {
   printf "-s [sessionname] specifies the sessionname. default is minecraft\n"
 }
 
-while getopts 's:' flag; do
+while getopts 'c:s:' flag; do
   case "${flag}" in
     s) screensession="${OPTARG}" ;;
     c) minecraftCommand="${OPTARG}" ;;
