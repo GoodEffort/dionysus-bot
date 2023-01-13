@@ -42,9 +42,9 @@ if [ $started -gt 0 ]; then
   exit 16
 fi
 
+$servercommand="$servercommand $servercommandflags"
 cd $rootdir
 
-screen -dmS $screensession
-screen -S $screensession -p 0 -X stuff "$servercommand $servercommandflags^M"
+screen -S $screensession -d -m $servercommand
 
-echo "Started screen session $screensession"
+echo "Started screen session $screensession with command $servercommand"
