@@ -2,20 +2,20 @@
 mem="5G"
 jar="./mc-server-1.19.2.jar"
 screensession="minecraft"
-cwd="/home/steam/minecraft/"
+minecraftInstallationDir="/home/steam/minecraft/"
 timeout=false
 
-while getopts 'm:s:j:c:' flag; do
+while getopts 'm:s:j:c:t' flag; do
   case "${flag}" in
     m) mem="${OPTARG}" ;;
     s) screensession="${OPTARG}" ;;
     j) jar="${OPTARG}" ;;
-    c) cwd="${OPTARG}" ;;
+    c) minecraftInstallationDir="${OPTARG}" ;;
     t) timeout=true ;;
   esac
 done
 
-cd $cwd
+cd $minecraftInstallationDir
 
 servercommand="java -Xmx$mem -Xms$mem \
         -XX:+UseG1GC -XX:+ParallelRefProcEnabled \
@@ -33,23 +33,25 @@ servercommand="java -Xmx$mem -Xms$mem \
 
 #echo $servercommand
 echo "Starting Minecraft server with $mem of memory using the $jar as the server jar"
+
+cd "${0%/*}"
 echo "s:$(date +%s):" >> ./scripts/activity/$screensession
 
 if [ $timeout = true ] ; then
-  cd "${0%/*}"
   ./edit-cron-job.sh
-  cd $cwd
 fi
+
+cd $minecraftInstallationDir
 
 until $servercommand; do
         echo "Minecraft server crashed with exit code $?. Restarting in 10 seconds" >&2
         sleep 10
 done
 
+cd "${0%/*}"
+
 echo "Server closed successfully!"
 
 if [ $timeout = true ] ; then
-  cd "${0%/*}"
   ./edit-cron-job.sh -r
-  cd $cwd
 fi
