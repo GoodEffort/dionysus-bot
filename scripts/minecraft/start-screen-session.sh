@@ -7,14 +7,14 @@ mem=""
 jar=""
 cwd="/home/steam/minecraft/"
 
-while getopts 's:c:tm:j:c:' flag; do
+while getopts 's:c:tm:j:c:w:' flag; do
   case "${flag}" in
     m) mem="${OPTARG}" ;;
     s) screensession="${OPTARG}" ;;
     c) servercommand="${OPTARG}" ;;
     t) timeout=true ;;
     j) jar="${OPTARG}" ;;
-    c) cwd="${OPTARG}" ;;
+    w) cwd="${OPTARG}" ;;
   esac
 done
 
@@ -32,7 +32,7 @@ if [ ! -z "$jar" ]; then
 fi
 
 if [ ! -z "$cwd" ]; then
-  servercommandflags=$servercommandflags" -c $cmd"
+  servercommandflags=$servercommandflags" -c $cwd"
 fi
 
 started=$(screen -ls | grep $screensession | wc -l)
@@ -44,6 +44,7 @@ fi
 
 cd $rootdir
 
-screen -d -m -S $screensession sh -c $servercommand $servercommandflags
+screen -dmS $screensession
+screen -S $screensession -p 0 -X stuff "$servercommand $servercommandflags^M"
 
 echo "Started screen session $screensession"
