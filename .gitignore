@@ -105,3 +105,5 @@ dist
 
 # auth info
 discord-auth.ts
+
+activity
