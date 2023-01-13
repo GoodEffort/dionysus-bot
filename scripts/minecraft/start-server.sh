@@ -2,7 +2,7 @@
 mem="5G"
 jar="./mc-server-1.19.2.jar"
 screensession="minecraft"
-cwd="~/minecraft/"
+cwd="/home/steam/minecraft/"
 timeout=false
 
 while getopts 'm:s:j:c:' flag; do
@@ -39,7 +39,6 @@ if [ $timeout = true ] ; then
   ./edit-cron-job.sh
 fi
 
-echo $servercommand
 until $servercommand; do
         echo "Minecraft server crashed with exit code $?. Restarting in 10 seconds" >&2
         sleep 10

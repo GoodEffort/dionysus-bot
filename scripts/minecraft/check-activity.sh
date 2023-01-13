@@ -15,6 +15,8 @@ while getopts 's:p:' flag; do
   esac
 done
 
+cd "${0%/*}"
+
 numberOfPlayers=$(./get-number-of-players.sh -p $port)
 
 if (($numberOfPlayers > 0)); then

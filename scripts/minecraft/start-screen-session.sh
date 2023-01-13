@@ -4,7 +4,7 @@ servercommand="./start-server.sh"
 timeout=false
 mem=""
 jar=""
-cwd=""
+cwd="/home/steam/minecraft/"
 
 while getopts 's:c:tm:j:c:' flag; do
   case "${flag}" in
@@ -33,6 +33,8 @@ fi
 if [ ! -z "$cwd" ]; then
   servercommandflags=servercommandflags+" -c $cmd"
 fi
+
+cd $cwd
 
 started=$(screen -ls | grep $screensession | wc -l)
 

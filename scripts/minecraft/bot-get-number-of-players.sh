@@ -9,5 +9,7 @@ while getopts 'p:' flag; do
   esac
 done
 
+cd "${0%/*}"
+
 players="$(./get-number-of-players.sh -p $port)"
 echo "There are $players players online."
