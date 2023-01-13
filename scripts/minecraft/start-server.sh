@@ -32,6 +32,7 @@ servercommand="java -Xmx$mem -Xms$mem \
 
 #echo $servercommand
 echo "Starting Minecraft server with $mem of memory using the $jar as the server jar"
+mkdir -p $rootdir/activity
 touch $rootdir/activity/$screensession
 echo "s:$(date +%s):" >> $rootdir/activity/$screensession
 

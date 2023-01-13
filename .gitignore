@@ -107,3 +107,4 @@ dist
 discord-auth.ts
 
 activity/
+scripts/**/activity/*
