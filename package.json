@@ -8,8 +8,7 @@
     "build": "tsc",
     "addExecPermissions": "chmod +x ./scripts/**/*.sh",
     "prod": "node ./dist/index.js",
-    "pm2": "pm2 start ./dist/index.js --name dionysus-bot -- start",
-    "initActivity": "mkdir ./activity; touch ./activity/minecraft ./activity/satisfactory ./activity/valheim ./activity/factorio"
+    "pm2": "pm2 start ./dist/index.js --name dionysus-bot -- start"
   },
   "repository": {
     "type": "git",

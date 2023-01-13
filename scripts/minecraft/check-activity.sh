@@ -19,6 +19,7 @@ done
 cd $rootdir
 
 numberOfPlayers=$(./get-number-of-players.sh -p $port)
+touch ./activity/$screensession
 
 if (($numberOfPlayers > 0)); then
   "$numberOfPlayers:$now:" >> ./activity/$screensession

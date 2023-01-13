@@ -32,9 +32,8 @@ servercommand="java -Xmx$mem -Xms$mem \
 
 #echo $servercommand
 echo "Starting Minecraft server with $mem of memory using the $jar as the server jar"
-
-cd $rootdir
-echo "s:$(date +%s):" >> ./activity/$screensession
+touch $rootdir/activity/$screensession
+echo "s:$(date +%s):" >> $rootdir/activity/$screensession
 
 if [ $timeout = true ] ; then
   ./edit-cron-job.sh
