@@ -1,7 +1,7 @@
 #!/bin/bash
 screensession="minecraft"
 servercommand="./start-server.sh"
-
+rootdir="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 timeout=false
 mem=""
 jar=""
@@ -41,6 +41,8 @@ if [ $started -gt 0 ]; then
   echo "Screen session $screensession already started"
   exit 16
 fi
+
+cd $rootdir
 
 screen -d -m -S $screensession sh -c $servercommand $servercommandflags
 

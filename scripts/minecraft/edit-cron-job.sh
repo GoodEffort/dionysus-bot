@@ -3,6 +3,7 @@ task="./check-activity.sh"
 screensession="minecraft"
 cronschedule="*/5 * * * *"
 removeOnly=false
+rootdir="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
 while getopts "t:c:r" flag; do
   case "${flag}" in
@@ -13,6 +14,7 @@ while getopts "t:c:r" flag; do
   esac
 done
 
+cd $rootdir
 
 tmp=${TEMPDIR:-/tmp}/xyz.$$
 trap "rm -f $tmp; exit 1" 0 1 2 3 13 15
