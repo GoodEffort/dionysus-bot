@@ -22,10 +22,10 @@ b="$(basename $task)"
 crontab -l | sed "/$screensesion.$b/d" > $tmp
 
 if [ "$removeOnly"  = false ]; then
-  echo removing $task from crontab
+  echo adding $task to crontab
   echo "$cronschedule $task" >> $tmp
 else 
-  echo adding $task to crontab
+  echo removing $task from crontab
 fi
 
 crontab < $tmp
