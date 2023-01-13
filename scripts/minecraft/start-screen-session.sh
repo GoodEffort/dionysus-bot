@@ -20,19 +20,19 @@ done
 
 servercommandflags="-s $screensession"
 if [ timeout = true ]; then
-  servercommandflags=$servercommandflags+" -t"
+  servercommandflags=$servercommandflags" -t"
 fi
 
 if [ ! -z "$mem" ]; then
-  servercommandflags=$servercommandflags+" -m $mem"
+  servercommandflags=$servercommandflags" -m $mem"
 fi
 
 if [ ! -z "$jar" ]; then
-  servercommandflags=$servercommandflags+" -j $jar"
+  servercommandflags=$servercommandflags" -j $jar"
 fi
 
 if [ ! -z "$cwd" ]; then
-  servercommandflags=$servercommandflags+" -c $cmd"
+  servercommandflags=$servercommandflags" -c $cmd"
 fi
 
 started=$(screen -ls | grep $screensession | wc -l)
