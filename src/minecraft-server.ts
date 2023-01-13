@@ -11,6 +11,8 @@ export const MinecraftServer = {
         try {
             const response = await minecraftExec(start);
 
+            console.log(response);
+
             if (!response.stderr) {
                 await interaction.editReply('Minecraft server started!');
             } else if (+response.stderr.replace(/\D/g, '') === 16) {
