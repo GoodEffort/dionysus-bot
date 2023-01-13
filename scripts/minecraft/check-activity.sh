@@ -48,6 +48,6 @@ done
 echo "$playersinmin players in last hour (non unique)"
 
 if ((playersinmin == 0)); then
-  $send stop -s $screensession
+  $send -c stop -s $screensession
   ./edit-cron-job.sh -r
 fi
