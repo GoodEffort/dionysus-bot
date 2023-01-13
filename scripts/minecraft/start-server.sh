@@ -36,7 +36,9 @@ echo "Starting Minecraft server with $mem of memory using the $jar as the server
 echo "s:$(date +%s):" >> ./scripts/activity/$screensession
 
 if [ $timeout = true ] ; then
+  cd "${0%/*}"
   ./edit-cron-job.sh
+  cd $cwd
 fi
 
 until $servercommand; do
@@ -47,5 +49,7 @@ done
 echo "Server closed successfully!"
 
 if [ $timeout = true ] ; then
+  cd "${0%/*}"
   ./edit-cron-job.sh -r
+  cd $cwd
 fi
