@@ -34,7 +34,7 @@ if [ ! -z "$cwd" ]; then
   servercommandflags=servercommandflags+" -c $cmd"
 fi
 
-cd $cwd
+cd "${0%/*}"
 
 started=$(screen -ls | grep $screensession | wc -l)
 
