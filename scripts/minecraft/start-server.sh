@@ -5,14 +5,16 @@ screensession="minecraft"
 minecraftInstallationDir="/home/steam/minecraft/"
 rootdir="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 timeout=false
+stop=false
 
-while getopts 'm:s:j:c:t' flag; do
+while getopts 'm:s:j:c:ta' flag; do
   case "${flag}" in
     m) mem="${OPTARG}" ;;
     s) screensession="${OPTARG}" ;;
     j) jar="${OPTARG}" ;;
     c) minecraftInstallationDir="${OPTARG}" ;;
     t) timeout=true ;;
+    a) stop=true
   esac
 done
 
@@ -51,4 +53,8 @@ echo "Server closed successfully!"
 
 if [ $timeout = true ] ; then
   $rootdir/edit-cron-job.sh -r
+fi
+
+if [ $stop = true ] ; then
+  exit
 fi

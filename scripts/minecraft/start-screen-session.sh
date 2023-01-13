@@ -18,8 +18,8 @@ while getopts 's:c:tm:j:c:w:' flag; do
   esac
 done
 
-servercommandflags="-s $screensession"
-if [ timeout = true ]; then
+servercommandflags="-as $screensession"
+if [ $timeout = true ]; then
   servercommandflags=$servercommandflags" -t"
 fi
 
