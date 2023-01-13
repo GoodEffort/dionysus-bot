@@ -1,6 +1,7 @@
 #!/bin/bash
 screensession="minecraft"
 servercommand="./start-server.sh"
+
 timeout=false
 mem=""
 jar=""
@@ -33,8 +34,6 @@ fi
 if [ ! -z "$cwd" ]; then
   servercommandflags=servercommandflags+" -c $cmd"
 fi
-
-cd "${0%/*}"
 
 started=$(screen -ls | grep $screensession | wc -l)
 

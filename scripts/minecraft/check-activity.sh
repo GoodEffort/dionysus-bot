@@ -4,6 +4,7 @@ screensession=minecraft
 min=60
 now=$(date +%s)
 send="./send-command.sh"
+rootdir="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
 while getopts 's:p:' flag; do
   case "${flag}" in
@@ -15,7 +16,7 @@ while getopts 's:p:' flag; do
   esac
 done
 
-cd "${0%/*}"
+cd $rootdir
 
 numberOfPlayers=$(./get-number-of-players.sh -p $port)
 

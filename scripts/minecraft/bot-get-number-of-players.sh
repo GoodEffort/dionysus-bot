@@ -1,5 +1,6 @@
 #!/bin/bash
 port=25565
+rootdir="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
 while getopts 'p:' flag; do
   case "${flag}" in
@@ -9,7 +10,7 @@ while getopts 'p:' flag; do
   esac
 done
 
-cd "${0%/*}"
+cd $rootdir
 
 players="$(./get-number-of-players.sh -p $port)"
 echo "There are $players players online."

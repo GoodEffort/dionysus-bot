@@ -3,6 +3,7 @@ mem="5G"
 jar="./mc-server-1.19.2.jar"
 screensession="minecraft"
 minecraftInstallationDir="/home/steam/minecraft/"
+rootdir="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 timeout=false
 
 while getopts 'm:s:j:c:t' flag; do
@@ -14,8 +15,6 @@ while getopts 'm:s:j:c:t' flag; do
     t) timeout=true ;;
   esac
 done
-
-cd $minecraftInstallationDir
 
 servercommand="java -Xmx$mem -Xms$mem \
         -XX:+UseG1GC -XX:+ParallelRefProcEnabled \
@@ -34,7 +33,7 @@ servercommand="java -Xmx$mem -Xms$mem \
 #echo $servercommand
 echo "Starting Minecraft server with $mem of memory using the $jar as the server jar"
 
-cd "${0%/*}"
+cd $rootdir
 echo "s:$(date +%s):" >> ./scripts/activity/$screensession
 
 if [ $timeout = true ] ; then
@@ -48,7 +47,7 @@ until $servercommand; do
         sleep 10
 done
 
-cd "${0%/*}"
+cd $rootdir
 
 echo "Server closed successfully!"
 
