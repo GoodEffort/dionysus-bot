@@ -1,5 +1,5 @@
 #!/bin/bash
-mem="5G"
+mem="16G"
 jar="./mc-server-1.19.2.jar"
 screensession="minecraft"
 minecraftInstallationDir="/home/steam/minecraft/"
