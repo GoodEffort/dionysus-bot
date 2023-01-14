@@ -5,6 +5,16 @@ import { minecraftExec } from './exec';
 
 const { port, start, getPlayers, checkStatus, stop } = Minecraft;
 
+async function getServerURL() {
+    let url: string;
+    try {
+        url = (await import('./ignore-config')).url;
+    } catch { 
+        url = (await import('./server-config')).url;
+    }
+    return url;
+}
+
 export const MinecraftServer = {
     [MinecraftCommands.START]: async (interaction: CommandInteraction<CacheType>) => {
         await interaction.deferReply();
@@ -66,7 +76,8 @@ export const MinecraftServer = {
         try {
             const reponse = await fetch('https://api.ipify.org');
             const ip = await reponse.text();
-            await interaction.editReply(`Minecraft server IP: ${ip}:${port}`);
+            const url = await getServerURL();
+            await interaction.editReply(`Minecraft server address ${ url }`);
         } catch (error) {
             console.error(error);
             await interaction.editReply("Something went wrong!");

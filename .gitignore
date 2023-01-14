@@ -108,3 +108,4 @@ discord-auth.ts
 
 activity/
 scripts/**/activity/*
+src/ignore-config.ts
