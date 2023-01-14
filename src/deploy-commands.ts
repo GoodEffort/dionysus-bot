@@ -1,7 +1,7 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { REST } from '@discordjs/rest';
 import { Routes } from 'discord-api-types/v9';
-import { clientId, guildId, token } from './discord-auth';
+import { clientId, guildIds, token } from './discord-auth';
 import { StandardEnum } from './types/StandardEnum';
 import { MinecraftCommands, MinecraftCommandsDescriptions } from './slash-commands'
 
@@ -38,6 +38,7 @@ export async function deployCommands() {
 
     try {
 
+        for (const guildId of guildIds) 
         await rest.put(
             Routes.applicationGuildCommands(clientId, guildId), { body: commands },
         );
